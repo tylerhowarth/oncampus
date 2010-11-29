@@ -1,0 +1,25 @@
+
+<ul>
+{% for event in events %}
+	<li><small style="color:#aaa;">{{ event.key }}</small><br/>
+		<a href="{{ event.short_url }}"><img src="{{ event.qr_code }}"></a><br/>
+		<strong>{{ event.title }}</strong>
+		<div>{{ event.description }}</div>
+		<div><small>{{ event.time }} | {{ event.location }} | {{ event.tag }} |
+			<a href="/admin/delete?key={{ event.key }}" onclick="return confirm('Are you sure you want to delete this event?')">Delete Event</a> | <a href="{{ event.short_url }}">{{ event.short_url }}</a> </small></div>
+		</li>
+{% endfor %}
+</ul>
+
+<hr/>
+
+<form action="/admin" method="POST">
+	<p><input type="text" placeholder="title" name="title"/></p>
+	<p><input type="text" placeholder="description" name="description"/></p>
+	<p><input type="text" placeholder="location" name="location"/></p>
+	<p><input type="text" placeholder="time" name="time"/></p>
+	<p><input type="text" placeholder="tag" name="tag"/></p>
+	
+
+	<p><input type="submit" value="Continue &rarr;"></p>
+</form>
